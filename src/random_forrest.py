@@ -5,6 +5,13 @@ from sklearn import preprocessing
 from sklearn.metrics import accuracy_score
 
 
+NUM_IMPORTANT_FEATURES = 25
+
+
+def get_rf_classifier():
+    return RandomForestClassifier( max_depth=4, random_state=42, max_samples=0.25 )
+
+
 def get_important_training_features():
 
     # Create the geographic abstraction vectors
@@ -24,18 +31,19 @@ def get_important_training_features():
     # classifier for training. 
     scaler = preprocessing.MinMaxScaler().fit( X )
     X_scaled = scaler.transform( X )
-    rf_classifier = RandomForestClassifier( max_depth=2, random_state=0, max_samples=0.1 )
+    rf_classifier = get_rf_classifier()
 
     # Train on all features
     rf_classifier.fit( X_scaled, y )
 
-    # Select the top 20 features and use only those
-    top_20_features_df = pd.DataFrame( [ X.columns, rf_classifier.feature_importances_ ] ).T
-    top_20_features_df.columns = ["features","importance (%)"]
-    top_20_features_df = top_20_features_df.sort_values("importance (%)", ascending=False ).reset_index()
-    top_20_features_df = top_20_features_df.head( 20 )
-
-    return top_20_features_df["features"]
+    # Select the important features and use only those
+    important_features_df = pd.DataFrame( [ X.columns, rf_classifier.feature_importances_ ] ).T
+    important_features_df.columns = ["features","importance (%)"]
+    important_features_df = important_features_df.sort_values("importance (%)", ascending=False ).reset_index()
+    important_features_df = important_features_df.head( NUM_IMPORTANT_FEATURES )
+    print( important_features_df.head( NUM_IMPORTANT_FEATURES ) )
+    
+    return important_features_df["features"]
 
 
 def get_rf_model( important_training_features ):
@@ -58,7 +66,7 @@ def get_rf_model( important_training_features ):
     # classifier for training. 
     scaler = preprocessing.MinMaxScaler().fit( X )
     X_scaled = scaler.transform( X )
-    rf_classifier = RandomForestClassifier( max_depth=2, random_state=0, max_samples=0.1 )
+    rf_classifier = get_rf_classifier()
 
     # Train on the most important features
     rf_classifier.fit( X_scaled, y )
