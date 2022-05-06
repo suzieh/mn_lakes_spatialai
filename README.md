@@ -13,7 +13,7 @@ The src folder contains all our code for generating buffers, determining feature
 - project_funcs.py : Helper functions for the random forest models.
 - random_forrest.py : Running and testing the random forest models.
 
-Due to limitations on GitHub, we could not make this repo fully due to the large size of our diverse datasets. For help running on the datasets we have obtained and are storing elsewhere, please contact the contributors.
+Due to limitations on GitHub, we could not make this repo fully end-to-end due to the large size of our diverse datasets. For help running on the datasets we have obtained and are storing elsewhere, please contact the contributors.
 
 ## Approach overview
 Below is a visual overview of our approach for your reference.
