@@ -17,3 +17,4 @@ Due to limitations on GitHub, we could not make this repo fully due to the large
 
 ## Approach overview
 Below is a visual overview of our approach for your reference.
+![alt text](https://github.com/suzieh/mn_lakes_spatialai/blob/main/approach.jpg)
