@@ -58,15 +58,16 @@ def main( args ):
     features.reset_index( inplace=True )
     features.drop( [ 'index' ], inplace=True, axis=1 )
     features.index.name = 'u_id'
-    features.to_csv( os.path.join( args.lakes_path, "precipitation_features.csv" ) )
+    #features.to_csv( os.path.join( args.lakes_path, "precipitation_features.csv" ) )
 
 
     ''' The following is used for plotting and debug. '''
 
-    # base = minnesota.plot( facecolor="none", aspect=1 )
-    # precipitation_in_minnesota.plot(ax=base, markersize=1)
-    # lakes.plot(ax=base)
-    # plt.show()
+    base = minnesota.plot( facecolor="none", aspect=1 )
+    precipitation_in_minnesota.plot(ax=base, markersize=20, color='red')
+    lakes = lakes[lakes["Assessment AUID"]!="16-0001-00"]
+    lakes.plot(ax=base)
+    plt.show()
 
 
 if __name__ == '__main__':

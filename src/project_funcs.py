@@ -54,4 +54,7 @@ def generate_feature_vectors(filepath=""):
     ''' For debug '''
     #feature_vectors.to_csv( os.path.join( filepath, "feature_vectors.csv" ) )
 
+    # Drop select features
+    feature_vectors.drop( [ "natural water 0", "natural water 500", "natural water 1000", "natural water 3000" ], axis=1, inplace=True )
+
     return feature_vectors
